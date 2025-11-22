@@ -1,36 +1,107 @@
 # Data Warehouse Project
 
+A production-grade data warehouse built using the Medallion Architecture (Bronze-Silver-Gold layers) to transform raw sales data from multiple source systems into business-ready insights.
 
-This project demonstrates a comprehensive data warehousing and analytics solution, from building a data warehouse to generating actionable insights. Designed a portfolio project that highlights industry practices in data engineering and analytics.
-
----
-
-## Project Requirements
-
-### Building the Data Warehouse (Data Engineering)
-
-### Objective
-Develop a modern data warehouse using SQL Server to consolidate sales data, enabling analytical reporting and informed decision-making.
-
-#### Specifications
-- **Data Sources:** Import data from two source systems (ERP and CRM) provided in CSV files
-- **Data Quality:** Cleanse and resolve data quality issues prior to analysis.
-- **Integration:** Combine both sources into a single, user-friendly data model designed for analytical queries.
-- **Scope:** Focus on the latest dataset; historizationof data is not required.
-- **Documentation:** Provide clear documentation of the data model to support both business stakeholders and analytics teams
+This project demonstrates end-to-end data engineering and analytics skills—from designing scalable data architecture to delivering actionable business intelligence.
 
 ---
 
-### BI: Analytics & Reporting (Data Analytics)
-
-### Objective
-Develop SQL-based analytics to deliver detailed insights into:
-- **Customer Behavior**
-- **Product Performance**
-- **Sales Trends**
-
-These insights empower stakeholders with key business metrics,enabling strategic decision-making.
+## Project Overview
+This repository showcases:
+1. **Data Architecture:** Designed a modern data warehouse using the Medallion Architecture (Bronze, Silver, Gold layers)
+2. **ETL Pipelines:** Built automated pipelines to extract, transform, and load data from CRM and ERP systems
+3. **Data Modelling:** Developed a Star Schema optimized for fast analytical queries
+4. **Data Quality Management:** Implemented comprehensive data validation, cleansing, and error handling
+5. **Analytics & Reporting:** Created SQL-based analytics to deliver insights on sales trends, customer behavior, and product performance
 
 ---
 
-more updates coming...
+## 🏗️ Architecture: Medallion (Bronze-Silver-Gold)
+
+The data architecture for the project follows the Medallion Architecture Bronze, Silver, and Gold layers.
+
+![Data Architecture](https://github.com/The-DataMaven/sql-data-warehouse-project/blob/4831ced1e5dcb7f38d8119c407257fce3a855d43/docs/data_architecture.png)
+
+1. **Bronze Layer: Raw Data Storage**
+  - **Purpose:** Store raw, unprocessed data exactly as received from source systems
+  - **Method:** Bulk insert from CSV files into SQL Server
+  - **Key Features:**
+    - No transformations applied
+    - Full data traceability
+    - Source of truth for debugging
+2. **Silver Layer: Cleaned & Standardized Data** 
+  - **Purpose:** Transform raw data into clean, reliable datasets
+  - **Transformations Applied:**
+    - Removed duplicates using ROW_NUMBER() window function
+    - Standardized inconsistent values using CASE statements
+    - Handled missing data (NULLs, empty strings, invalid dates)
+    - Trimmed unwanted spaces with TRIM()
+    - Applied business rules and derived calculated columns
+    - Implemented error handling with TRY-CATCH blocks
+  - **Data Volume:** 116,000+ rows cleaned across 6 tables
+  - **Result:** Reliable foundation for downstream analytics
+3.  **Gold Layer:**
+  - **Purpose:** Provide optimized data models for reporting and dashboards
+  - **Data Model:** Star Schema
+    - Fact Table: fact_sales (transactional sales data)
+    - Dimension Tables: dim_customers, dim_products (descriptive attributes)
+  - **Key Features:**
+    - Views (not physical tables) for real-time data freshness
+    - Surrogate keys for stable identifiers
+    - Optimized for fast analytical queries
+    - Simple joins for business users
+
+---
+
+## 📂 Repository Structure
+├── 01_bronze_layer/
+│   ├── ddl_scripts/          # Table creation scripts
+│   ├── stored_procedures/    # Data ingestion procedures
+│   └── documentation/        # Bronze layer data flow diagrams
+│
+├── 02_silver_layer/
+│   ├── ddl_scripts/          # Cleaned table structures
+│   ├── stored_procedures/    # Data transformation logic
+│   ├── validation_queries/   # Data quality checks
+│   └── documentation/        # Transformation rules
+│
+├── 03_gold_layer/
+│   ├── views/                # Star schema views
+│   ├── data_model/           # Star schema diagram
+│   └── data_catalog/         # Business glossary & metadata
+│
+├── 04_analytics/
+│   ├── sql_queries/          # Business intelligence queries
+│   └── reports/              # Sample analytical outputs
+│
+└── README.md
+
+---
+
+## 🛠️ Technologies Used
+
+- **Database:** SQL Server
+- **Languages:** SQL (Advanced)
+- **Tools:** SQL Server Management Studio, Draw.io (data modeling), Git (version control)
+- **Key SQL Techniques:**
+  - Window functions (ROW_NUMBER(), RANK())
+  - CTEs (Common Table Expressions)
+  - CASE statements for data standardization
+  - TRY-CATCH error handling
+  - Bulk insert operations
+  - Views for real-time data access
+
+---
+
+## ⭐ About Me
+
+Hi! I'm Jennifer Joseph, a Data Analyst passionate about transforming raw data into insights that drive business decisions and creates positive change.
+
+**Connect with me:**
+
+[LinkedIn](https://www.linkedin.com/in/jenniferjoseph-data/) | [Email](jennyashaeziembu@gmail.com)
+
+---
+
+## License
+This project is open-source and available under the MIT License.
