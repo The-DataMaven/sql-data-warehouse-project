@@ -53,31 +53,6 @@ The data architecture for the project follows the Medallion Architecture Bronze,
 
 ---
 
-## 📂 Repository Structure
-├── 01_bronze_layer/
-│   ├── ddl_scripts/          # Table creation scripts
-│   ├── stored_procedures/    # Data ingestion procedures
-│   └── documentation/        # Bronze layer data flow diagrams
-│
-├── 02_silver_layer/
-│   ├── ddl_scripts/          # Cleaned table structures
-│   ├── stored_procedures/    # Data transformation logic
-│   ├── validation_queries/   # Data quality checks
-│   └── documentation/        # Transformation rules
-│
-├── 03_gold_layer/
-│   ├── views/                # Star schema views
-│   ├── data_model/           # Star schema diagram
-│   └── data_catalog/         # Business glossary & metadata
-│
-├── 04_analytics/
-│   ├── sql_queries/          # Business intelligence queries
-│   └── reports/              # Sample analytical outputs
-│
-└── README.md
-
----
-
 ## 🛠️ Technologies Used
 
 - **Database:** SQL Server
